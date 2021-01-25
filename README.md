@@ -2,6 +2,16 @@
 
 In this project, you'll have an opportunity to demonstrate the security and DevOps skills that you learned in this lesson by completing an eCommerce application. You'll start with a template for the complete application, and your goal will be to take this template and add proper authentication and authorization controls so users can only access their data, and that data can only be accessed in a secure way. 
 
+Original code available at https://github.com/udacity/nd035-c4-Security-and-DevOps as part of [Java Web Developer Nanodegree](https://www.udacity.com/course/java-developer-nanodegree--nd035)
+by Udacity
+
+# Table of Contents
+1. [Project Template](#project-template)
+1. [Adding Authentication and Authorization](#adding-authentication-and-authorization)
+1. [Testing](#testing)
+1. [Implementation](#implementation)
+
+
 ## Project Template
 First, you'll want to get set up with the template. The template is written in Java using Spring Boot, Hibernate ORM, and the H2 database. H2 is an in memory database, so if you need to retry something, every application startup is a fresh copy.
 
@@ -78,3 +88,8 @@ and that should, if those are valid credentials, return a 200 OK with an Authori
 
 ## Testing
 You must implement unit tests demonstrating at least 80% code coverage.
+
+## Implementation
+The main point of the implementation are as follows:
+* Unit test have been added to cover all existing functionality
+* A Postman [environment](starter_code/src/main/resources/eCommerce.postman_environment.json) and [collection](starter_code/src/main/resources/Udacity eCommerce.postman_collection.json) have been added 

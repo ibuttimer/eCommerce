@@ -1,22 +1,11 @@
 package com.example.demo.model.persistence;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_order")
@@ -41,6 +30,20 @@ public class UserOrder {
 	@JsonProperty
 	@Column
 	private BigDecimal total;
+
+	public UserOrder() {
+	}
+
+	public UserOrder(Long id, List<Item> items, User user, BigDecimal total) {
+		this.id = id;
+		this.items = items;
+		this.user = user;
+		this.total = total;
+	}
+
+	public static UserOrder of(List<Item> items, User user, BigDecimal total) {
+		return new UserOrder(0L, items, user, total);
+	}
 
 	public Long getId() {
 		return id;
@@ -76,7 +79,7 @@ public class UserOrder {
 
 	public static UserOrder createFromCart(Cart cart) {
 		UserOrder order = new UserOrder();
-		order.setItems(cart.getItems().stream().collect(Collectors.toList()));
+		order.setItems(new ArrayList<>(cart.getItems()));
 		order.setTotal(cart.getTotal());
 		order.setUser(cart.getUser());
 		return order;

@@ -1,22 +1,11 @@
 package com.example.demo.model.persistence;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "cart")
@@ -40,7 +29,25 @@ public class Cart {
 	@Column
 	@JsonProperty
 	private BigDecimal total;
-	
+
+	public Cart() {
+	}
+
+	public Cart(Long id, List<Item> items, User user, BigDecimal total) {
+		this.id = id;
+		this.items = items;
+		this.user = user;
+		this.total = total;
+	}
+
+	public static Cart of(List<Item> items, User user, BigDecimal total) {
+		return new Cart(0L, items, user, total);
+	}
+
+	public static Cart of(User user) {
+		return new Cart(0L, new ArrayList<>(), user, new BigDecimal(0));
+	}
+
 	public BigDecimal getTotal() {
 		return total;
 	}
@@ -74,24 +81,42 @@ public class Cart {
 	}
 	
 	public void addItem(Item item) {
-		if(items == null) {
-			items = new ArrayList<>();
-		}
-		items.add(item);
-		if(total == null) {
-			total = new BigDecimal(0);
-		}
-		total = total.add(item.getPrice());
+		addItem(item, 1);
 	}
 	
-	public void removeItem(Item item) {
+	public void addItem(Item item, int count) {
+		nullCheck();
+		while (count > 0) {
+			items.add(item);
+			total = total.add(item.getPrice());
+			--count;
+		}
+	}
+
+	private void nullCheck() {
 		if(items == null) {
 			items = new ArrayList<>();
 		}
-		items.remove(item);
 		if(total == null) {
 			total = new BigDecimal(0);
 		}
-		total = total.subtract(item.getPrice());
+	}
+
+	public void removeItem(Item item) {
+		removeItem(item, 1);
+	}
+
+	public void removeItem(Item item, int count) {
+		nullCheck();
+		while (count > 0) {
+			items.remove(item);
+			total = total.subtract(item.getPrice());
+			--count;
+		}
+	}
+
+	public void empty() {
+		items.clear();
+		total = new BigDecimal(0);
 	}
 }
