@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean package
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/auth-course-0.0.1-SNAPSHOT.jar
+    - appspec.yml
+    - scripts/install_dependencies.sh
+    - scripts/start_server.sh
+    - scripts/stop_server.sh
