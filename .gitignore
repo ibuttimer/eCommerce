@@ -3,6 +3,4 @@
 *.iws
 *.iml
 *.ipr
-/starter_code/target/
-/starter_code/mvnw
-/starter_code/mvnw.cmd
+/target/
