@@ -1,0 +1,284 @@
+{
+	"id": "0578e51a-cd6d-4d0a-9ca4-4add45cab4c3",
+	"name": "Udacity eCommerce",
+	"timestamp": "2021-01-27T11:26:35.152Z",
+	"collection_id": "7a77d72d-9ef6-4006-905f-a6cba847ce35",
+	"folder_id": 0,
+	"environment_id": "5e5b5a4d-b4ed-46c2-b69a-b21290a05aa7",
+	"totalPass": 11,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "9988c7df-be4c-4723-8740-8a628f601f05",
+			"name": "Create user",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/user/create",
+			"time": 1154,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Body values": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1154
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Body values": true
+				}
+			]
+		},
+		{
+			"id": "d3de98fe-9a40-4f6e-972d-8ace71a32159",
+			"name": "Login",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/login",
+			"time": 687,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				687
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "9a1e3044-6430-44ee-94e2-bb12f08f5e5b",
+			"name": "Get user by id",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/user/id/1",
+			"time": 114,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body values": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				114
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body values": true
+				}
+			]
+		},
+		{
+			"id": "daf88469-4ca5-435e-bfe4-292151fb7d84",
+			"name": "Get user by name",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/user/fred",
+			"time": 53,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body values": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				53
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body values": true
+				}
+			]
+		},
+		{
+			"id": "80dd93e4-61e2-424e-bea2-a39f4f373dbe",
+			"name": "Add to cart",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/cart/addToCart",
+			"time": 122,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				122
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e24e8099-a21b-405e-b164-316362dbf4e2",
+			"name": "Remove from cart",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/cart/removeFromCart",
+			"time": 55,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				55
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "45222850-1fa4-40aa-91c9-cc7b131d1058",
+			"name": "Submit order",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/order/submit/fred",
+			"time": 64,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				64
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f1669cfc-4b8a-4f88-af8d-0f0eda6ead2f",
+			"name": "Order history",
+			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/order/history/fred",
+			"time": 59,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2308,
+	"collection": {
+		"requests": [
+			{
+				"id": "9988c7df-be4c-4723-8740-8a628f601f05",
+				"method": "POST"
+			},
+			{
+				"id": "d3de98fe-9a40-4f6e-972d-8ace71a32159",
+				"method": "POST"
+			},
+			{
+				"id": "9a1e3044-6430-44ee-94e2-bb12f08f5e5b",
+				"method": "GET"
+			},
+			{
+				"id": "daf88469-4ca5-435e-bfe4-292151fb7d84",
+				"method": "GET"
+			},
+			{
+				"id": "80dd93e4-61e2-424e-bea2-a39f4f373dbe",
+				"method": "POST"
+			},
+			{
+				"id": "e24e8099-a21b-405e-b164-316362dbf4e2",
+				"method": "POST"
+			},
+			{
+				"id": "45222850-1fa4-40aa-91c9-cc7b131d1058",
+				"method": "POST"
+			},
+			{
+				"id": "f1669cfc-4b8a-4f88-af8d-0f0eda6ead2f",
+				"method": "GET"
+			}
+		]
+	}
+}

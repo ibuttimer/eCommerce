@@ -10,6 +10,8 @@ by Udacity
 1. [Adding Authentication and Authorization](#adding-authentication-and-authorization)
 1. [Testing](#testing)
 1. [Implementation](#implementation)
+   1. [Build and Deploy](#build-and-deploy)
+      1. [Build and Deploy Artefacts](#build-and-deploy-artefacts)
 
 
 ## Project Template
@@ -93,3 +95,23 @@ You must implement unit tests demonstrating at least 80% code coverage.
 The main point of the implementation are as follows:
 * Unit test have been added to cover all existing functionality
 * A Postman [environment](starter_code/src/main/resources/eCommerce.postman_environment.json) and [collection](starter_code/src/main/resources/Udacity eCommerce.postman_collection.json) have been added 
+
+### Build and Deploy
+A CI/CD pipeline was configured on Amazon Web Services using a modified version of the demonstration solution from [Setting up a CI/CD pipeline by integrating Jenkins with AWS CodeBuild and AWS CodeDeploy](https://aws.amazon.com/blogs/devops/setting-up-a-ci-cd-pipeline-by-integrating-jenkins-with-aws-codebuild-and-aws-codedeploy/).
+It uses an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template to generate the required resources including:
+* Jenkins server
+* Auto Scaling group and Elastic Load Balancer to control instances
+* Roles and policies
+
+which were updated to meet the requirements of the project.
+
+### Build and Deploy Artefacts
+The Build and Deploy artefacts are included in the [build_deploy](artifacts/build_deploy) folder, including:
+* Build logs
+   - [JenkinsCodeBuildDashboard.pdf](artifacts/build_deploy/JenkinsCodeBuildDashboard.pdf)
+   - [JenkinsConsole.txt](artifacts/build_deploy/JenkinsConsole.txt)
+* Jenkins configuration
+   - [eCommerceConfigJenkins.pdf](artifacts/build_deploy/eCommerceConfigJenkins.pdf)
+* Postman unit test results
+   - [Udacity eCommerce.postman_test_run.json](artifacts/build_deploy/Udacity eCommerce.postman_test_run.json)
+   
