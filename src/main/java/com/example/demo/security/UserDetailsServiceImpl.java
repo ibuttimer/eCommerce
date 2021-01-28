@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+import static com.example.demo.misc.LogUtils.logFailure;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -24,7 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
-            securityLogger.warn("User not found for username: '" + username + "'");
+            securityLogger.warn(
+                    logFailure("User not found for username: '" + username + "'")
+            );
             throw new UsernameNotFoundException(username);
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), Collections.emptyList());

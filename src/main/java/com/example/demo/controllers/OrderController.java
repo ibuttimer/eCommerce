@@ -52,7 +52,9 @@ public class OrderController {
 			} else {
 				order = orderRepository.save(order);
 				logger.info(
-						logSuccess("Order submitted for user: " + username));
+						logSuccess("Order submitted for user: " + username +
+								", num_items=" + order.getItems().size()) +
+								", total=" + order.getTotal().doubleValue());
 
 				// empty card for next order
 				user.getCart().empty();

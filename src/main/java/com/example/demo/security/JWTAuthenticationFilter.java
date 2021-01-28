@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.demo.misc.LogUtils;
+import org.slf4j.Logger;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,10 +22,14 @@ import com.example.demo.model.persistence.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+import static com.example.demo.misc.LogUtils.logFailure;
+import static com.example.demo.misc.LogUtils.logSuccess;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-	 private final AuthenticationManager authenticationManager;
+    Logger securityLogger = LogUtils.getLogger(JWTAuthenticationFilter.class, LogUtils.SECURITY);
+
+    private final AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -35,14 +41,32 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     	try {
     		User credentials = new ObjectMapper()
                     .readValue(req.getInputStream(), User.class);
-    		
-    		return authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            credentials.getUsername(),
-                            credentials.getPassword(),
-                            new ArrayList<>()));
+
+            Authentication authentication;
+            try {
+                authentication = authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(
+                                credentials.getUsername(),
+                                credentials.getPassword(),
+                                new ArrayList<>()));
+            } catch (AuthenticationException e) {
+                securityLogger.warn(
+                        logFailure("Invalid user credentials for username: '" + credentials.getUsername() + "'")
+                );
+                throw e;
+            }
+
+            securityLogger.info(
+                    logSuccess("User login: '" + credentials.getUsername() + "'")
+            );
+
+            return authentication;
     	} catch (IOException e) {
-    		throw new RuntimeException(e);
+            RuntimeException runtimeException = new RuntimeException(e);
+            securityLogger.warn(
+                    logFailure("Unable to process login"), runtimeException
+            );
+    		throw runtimeException;
     	}
     }
     

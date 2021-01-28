@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static com.example.demo.config.Config.*;
+import static com.example.demo.misc.LogUtils.logSuccess;
 import static com.example.demo.misc.LogUtils.logSuccessFailure;
 
 @RestController
@@ -77,7 +78,7 @@ public class CartController {
 				response = ResponseEntity.ok(
 								cartRepository.save(cart));
 				success = true;
-				logger.info("Cart updated: " + operation.name());
+				logger.info("Cart updated: " + operation.name() + ", num_items=" + request.getQuantity());
 			}
 		}
 		logger.trace(
