@@ -1,18 +1,18 @@
 {
-	"id": "0578e51a-cd6d-4d0a-9ca4-4add45cab4c3",
+	"id": "38ece9b9-9ba1-4b62-8a68-2c5f302719f8",
 	"name": "Udacity eCommerce",
-	"timestamp": "2021-01-27T11:26:35.152Z",
+	"timestamp": "2021-01-28T19:59:01.656Z",
 	"collection_id": "7a77d72d-9ef6-4006-905f-a6cba847ce35",
 	"folder_id": 0,
 	"environment_id": "5e5b5a4d-b4ed-46c2-b69a-b21290a05aa7",
-	"totalPass": 11,
+	"totalPass": 14,
 	"totalFail": 0,
 	"results": [
 		{
 			"id": "9988c7df-be4c-4723-8740-8a628f601f05",
 			"name": "Create user",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/user/create",
-			"time": 1154,
+			"url": "http://localhost:8080/api/user/create",
+			"time": 350,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -32,7 +32,7 @@
 				}
 			},
 			"times": [
-				1154
+				350
 			],
 			"allTests": [
 				{
@@ -44,8 +44,8 @@
 		{
 			"id": "d3de98fe-9a40-4f6e-972d-8ace71a32159",
 			"name": "Login",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/login",
-			"time": 687,
+			"url": "http://localhost:8080/login",
+			"time": 192,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -60,7 +60,7 @@
 				}
 			},
 			"times": [
-				687
+				192
 			],
 			"allTests": [
 				{
@@ -69,10 +69,37 @@
 			]
 		},
 		{
+			"id": "43971137-8469-4b01-a204-ae1f3c4c941b",
+			"name": "Login Invalid",
+			"url": "http://localhost:8080/login",
+			"time": 71,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status code is 403": true
+			},
+			"testPassFailCounts": {
+				"Status code is 403": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				71
+			],
+			"allTests": [
+				{
+					"Status code is 403": true
+				}
+			]
+		},
+		{
 			"id": "9a1e3044-6430-44ee-94e2-bb12f08f5e5b",
 			"name": "Get user by id",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/user/id/1",
-			"time": 114,
+			"url": "http://localhost:8080/api/user/id/1",
+			"time": 27,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -92,7 +119,7 @@
 				}
 			},
 			"times": [
-				114
+				27
 			],
 			"allTests": [
 				{
@@ -104,8 +131,8 @@
 		{
 			"id": "daf88469-4ca5-435e-bfe4-292151fb7d84",
 			"name": "Get user by name",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/user/fred",
-			"time": 53,
+			"url": "http://localhost:8080/api/user/fred",
+			"time": 12,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -125,7 +152,7 @@
 				}
 			},
 			"times": [
-				53
+				12
 			],
 			"allTests": [
 				{
@@ -136,9 +163,9 @@
 		},
 		{
 			"id": "80dd93e4-61e2-424e-bea2-a39f4f373dbe",
-			"name": "Add to cart",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/cart/addToCart",
-			"time": 122,
+			"name": "Add to cart (1)",
+			"url": "http://localhost:8080/api/cart/addToCart",
+			"time": 37,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -153,7 +180,34 @@
 				}
 			},
 			"times": [
-				122
+				37
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "1bf39219-dadf-44d7-b64b-198538c0f36f",
+			"name": "Add to cart (2)",
+			"url": "http://localhost:8080/api/cart/addToCart",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
 			],
 			"allTests": [
 				{
@@ -164,8 +218,8 @@
 		{
 			"id": "e24e8099-a21b-405e-b164-316362dbf4e2",
 			"name": "Remove from cart",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/cart/removeFromCart",
-			"time": 55,
+			"url": "http://localhost:8080/api/cart/removeFromCart",
+			"time": 14,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -180,7 +234,7 @@
 				}
 			},
 			"times": [
-				55
+				14
 			],
 			"allTests": [
 				{
@@ -191,8 +245,8 @@
 		{
 			"id": "45222850-1fa4-40aa-91c9-cc7b131d1058",
 			"name": "Submit order",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/order/submit/fred",
-			"time": 64,
+			"url": "http://localhost:8080/api/order/submit/fred",
+			"time": 20,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -207,7 +261,7 @@
 				}
 			},
 			"times": [
-				64
+				20
 			],
 			"allTests": [
 				{
@@ -216,10 +270,37 @@
 			]
 		},
 		{
+			"id": "22c9f61e-38f6-4d4c-9c32-40bfc207cb4b",
+			"name": "Submit order Empty Cart",
+			"url": "http://localhost:8080/api/order/submit/fred",
+			"time": 10,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
 			"id": "f1669cfc-4b8a-4f88-af8d-0f0eda6ead2f",
 			"name": "Order history",
-			"url": "http://ec2-18-203-67-72.eu-west-1.compute.amazonaws.com:8080/api/order/history/fred",
-			"time": 59,
+			"url": "http://localhost:8080/api/order/history/fred",
+			"time": 13,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -234,7 +315,7 @@
 				}
 			},
 			"times": [
-				59
+				13
 			],
 			"allTests": [
 				{
@@ -244,7 +325,7 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 2308,
+	"totalTime": 762,
 	"collection": {
 		"requests": [
 			{
@@ -253,6 +334,10 @@
 			},
 			{
 				"id": "d3de98fe-9a40-4f6e-972d-8ace71a32159",
+				"method": "POST"
+			},
+			{
+				"id": "43971137-8469-4b01-a204-ae1f3c4c941b",
 				"method": "POST"
 			},
 			{
@@ -268,11 +353,19 @@
 				"method": "POST"
 			},
 			{
+				"id": "1bf39219-dadf-44d7-b64b-198538c0f36f",
+				"method": "POST"
+			},
+			{
 				"id": "e24e8099-a21b-405e-b164-316362dbf4e2",
 				"method": "POST"
 			},
 			{
 				"id": "45222850-1fa4-40aa-91c9-cc7b131d1058",
+				"method": "POST"
+			},
+			{
+				"id": "22c9f61e-38f6-4d4c-9c32-40bfc207cb4b",
 				"method": "POST"
 			},
 			{
