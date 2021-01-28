@@ -114,7 +114,7 @@ The Build and Deploy artefacts are included in the [build_deploy](artifacts/buil
 * Jenkins configuration
    - [eCommerceConfigJenkins.pdf](artifacts/build_deploy/eCommerceConfigJenkins.pdf)
 * Postman unit test results
-   - [Udacity eCommerce.postman_test_run.json](artifacts/build_deploy/Udacity eCommerce.postman_test_run.json)
+   - [UdacityeCommerce.postman_test_run.json](artifacts/build_deploy/UdacityeCommerce.postman_test_run.json)
 
 ### Splunk Artefacts
 The Build and Deploy artefacts are included in the [splunk](artifacts/splunk) folder.
