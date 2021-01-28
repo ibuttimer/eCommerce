@@ -1,559 +1,377 @@
 {
-	"info": {
-		"_postman_id": "7a77d72d-9ef6-4006-905f-a6cba847ce35",
-		"name": "Udacity eCommerce",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
+	"id": "38ece9b9-9ba1-4b62-8a68-2c5f302719f8",
+	"name": "Udacity eCommerce",
+	"timestamp": "2021-01-28T19:59:01.656Z",
+	"collection_id": "7a77d72d-9ef6-4006-905f-a6cba847ce35",
+	"folder_id": 0,
+	"environment_id": "5e5b5a4d-b4ed-46c2-b69a-b21290a05aa7",
+	"totalPass": 14,
+	"totalFail": 0,
+	"results": [
 		{
+			"id": "9988c7df-be4c-4723-8740-8a628f601f05",
 			"name": "Create user",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {\r",
-							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
-							"\r",
-							"    var user = pm.response.json();\r",
-							"    pm.environment.set(\"userId\", user.id);\r",
-							"});\r",
-							"pm.test(\"Body values\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.username).to.eql(pm.environment.get(\"username\"));\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
+			"url": "http://localhost:8080/api/user/create",
+			"time": 350,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Body values": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
 				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"pm.environment.set(\"username\", \"fred\");\r",
-							"pm.environment.set(\"password\", \"acbdefghi\");\r",
-							"pm.environment.set(\"count\", 1);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"confirmPassword\": \"{{password}}\"\r\n}"
-				},
-				"url": {
-					"raw": "{{server_ip}}/api/user/create",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"user",
-						"create"
-					]
+				"Body values": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				350
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Body values": true
+				}
+			]
 		},
 		{
+			"id": "d3de98fe-9a40-4f6e-972d-8ace71a32159",
 			"name": "Login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"\r",
-							"    // set the JWT for subsequent requests\r",
-							"    pm.environment.set(\"token\", pm.response.headers.get(\"Authorization\").slice(\"Bearer \".length));\r",
-							"});\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{server_ip}}/login",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"login"
-					]
+			"url": "http://localhost:8080/login",
+			"time": 192,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				192
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
 		},
 		{
+			"id": "43971137-8469-4b01-a204-ae1f3c4c941b",
+			"name": "Login Invalid",
+			"url": "http://localhost:8080/login",
+			"time": 71,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status code is 403": true
+			},
+			"testPassFailCounts": {
+				"Status code is 403": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				71
+			],
+			"allTests": [
+				{
+					"Status code is 403": true
+				}
+			]
+		},
+		{
+			"id": "9a1e3044-6430-44ee-94e2-bb12f08f5e5b",
 			"name": "Get user by id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body values\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"userId\"));\r",
-							"    pm.expect(jsonData.username).to.eql(pm.environment.get(\"username\"));\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
+			"url": "http://localhost:8080/api/user/id/1",
+			"time": 27,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body values": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{server_ip}}/api/user/id/{{userId}}",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"user",
-						"id",
-						"{{userId}}"
-					]
+				"Body values": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body values": true
+				}
+			]
 		},
 		{
+			"id": "daf88469-4ca5-435e-bfe4-292151fb7d84",
 			"name": "Get user by name",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body values\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"userId\"));\r",
-							"    pm.expect(jsonData.username).to.eql(pm.environment.get(\"username\"));\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
+			"url": "http://localhost:8080/api/user/fred",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body values": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{server_ip}}/api/user/{{username}}",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"user",
-						"{{username}}"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
-					]
+				"Body values": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body values": true
+				}
+			]
 		},
 		{
+			"id": "80dd93e4-61e2-424e-bea2-a39f4f373dbe",
 			"name": "Add to cart (1)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"// update count\r",
-							"pm.environment.set(\"count\", _.random(6, 10));"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n\t\"itemId\": 1,\r\n\t\"quantity\": {{count}}\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{server_ip}}/api/cart/addToCart",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"cart",
-						"addToCart"
-					]
+			"url": "http://localhost:8080/api/cart/addToCart",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
 		},
 		{
+			"id": "1bf39219-dadf-44d7-b64b-198538c0f36f",
 			"name": "Add to cart (2)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"// update count\r",
-							"pm.environment.set(\"count\", _.random(1, 5));"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n\t\"itemId\": 2,\r\n\t\"quantity\": 2\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{server_ip}}/api/cart/addToCart",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"cart",
-						"addToCart"
-					]
+			"url": "http://localhost:8080/api/cart/addToCart",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
 		},
 		{
+			"id": "e24e8099-a21b-405e-b164-316362dbf4e2",
 			"name": "Remove from cart",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"// update count\r",
-							"pm.environment.set(\"count\", _.random(1, 4));"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"{{username}}\",\r\n\t\"itemId\": 1,\r\n\t\"quantity\": {{count}}\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{server_ip}}/api/cart/removeFromCart",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"cart",
-						"removeFromCart"
-					]
+			"url": "http://localhost:8080/api/cart/removeFromCart",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
 		},
 		{
+			"id": "45222850-1fa4-40aa-91c9-cc7b131d1058",
 			"name": "Submit order",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{Authorization}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{server_ip}}/api/order/submit/{{username}}",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"order",
-						"submit",
-						"{{username}}"
-					]
+			"url": "http://localhost:8080/api/order/submit/fred",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
 		},
 		{
+			"id": "22c9f61e-38f6-4d4c-9c32-40bfc207cb4b",
 			"name": "Submit order Empty Cart",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"    pm.response.to.have.status(204);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "{{Authorization}}"
-					}
-				],
-				"url": {
-					"raw": "{{server_ip}}/api/order/submit/{{username}}",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"order",
-						"submit",
-						"{{username}}"
-					]
+			"url": "http://localhost:8080/api/order/submit/fred",
+			"time": 10,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
 		},
 		{
+			"id": "f1669cfc-4b8a-4f88-af8d-0f0eda6ead2f",
 			"name": "Order history",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{server_ip}}/api/order/history/fred",
-					"host": [
-						"{{server_ip}}"
-					],
-					"path": [
-						"api",
-						"order",
-						"history",
-						"fred"
-					]
+			"url": "http://localhost:8080/api/order/history/fred",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
-			"response": []
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
 		}
 	],
-	"variable": [
-		{
-			"key": "Authorization",
-			"value": "Bearer..."
-		},
-		{
-			"key": "username",
-			"value": "username"
-		},
-		{
-			"key": "password",
-			"value": "password"
-		}
-	]
+	"count": 1,
+	"totalTime": 762,
+	"collection": {
+		"requests": [
+			{
+				"id": "9988c7df-be4c-4723-8740-8a628f601f05",
+				"method": "POST"
+			},
+			{
+				"id": "d3de98fe-9a40-4f6e-972d-8ace71a32159",
+				"method": "POST"
+			},
+			{
+				"id": "43971137-8469-4b01-a204-ae1f3c4c941b",
+				"method": "POST"
+			},
+			{
+				"id": "9a1e3044-6430-44ee-94e2-bb12f08f5e5b",
+				"method": "GET"
+			},
+			{
+				"id": "daf88469-4ca5-435e-bfe4-292151fb7d84",
+				"method": "GET"
+			},
+			{
+				"id": "80dd93e4-61e2-424e-bea2-a39f4f373dbe",
+				"method": "POST"
+			},
+			{
+				"id": "1bf39219-dadf-44d7-b64b-198538c0f36f",
+				"method": "POST"
+			},
+			{
+				"id": "e24e8099-a21b-405e-b164-316362dbf4e2",
+				"method": "POST"
+			},
+			{
+				"id": "45222850-1fa4-40aa-91c9-cc7b131d1058",
+				"method": "POST"
+			},
+			{
+				"id": "22c9f61e-38f6-4d4c-9c32-40bfc207cb4b",
+				"method": "POST"
+			},
+			{
+				"id": "f1669cfc-4b8a-4f88-af8d-0f0eda6ead2f",
+				"method": "GET"
+			}
+		]
+	}
 }
